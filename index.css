@@ -1,0 +1,20 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+    border: 1px solid black;
+}
+.title {
+    display: flex;
+    align-items: center;
+}
+.logo {
+    width: 100px;
+}
+.nav-items > ul{
+    display: flex;
+    list-style-type: none;
+}
+.nav-items > ul > li{
+    padding: 20px;
+}
