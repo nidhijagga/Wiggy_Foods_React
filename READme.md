@@ -1,0 +1,1 @@
+Have to delete the original Swiggy API's as it was not consistent but changed the constant data from swiggy API.
