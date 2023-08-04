@@ -1,5 +1,4 @@
 export const restaurantList = [
-  [
     {
       "info": {
         "id": "223015",
@@ -1877,5 +1876,4 @@ export const restaurantList = [
         "type": "DEEPLINK"
       }
     }
-  ],
   ];

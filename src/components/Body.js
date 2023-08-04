@@ -1,55 +1,41 @@
 import { restaurantList } from "../config";
-import { useState, useEffect  } from "react";
-// const ResturantCard = ({restaurant}) => {
-//   const {img, name, cuisineType, rating} = restaurant;
-//   return (
-//     <div className="card">
-//       <img src={img} alt="" />
-//       <h2>{name}</h2>
-//       <h3>{cuisineType.join(", ")}</h3>
-//       <h4>{rating} stars</h4>
-//     </div>
-//   );
-// };
+import { useState, useEffect } from "react";
+import Shimmer from "./Shimmer";
+import ResturantCard from "./RestaurantCard";
 
-const ResturantCard = ({name, cuisines, avgRating, cloudinaryImageId}) => {
-  // const {img, name, cuisineType, rating} = restaurant;
-  console.log(cuisines);
-  return (
-    <div className="card">
-      <img src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" + cloudinaryImageId} alt="" />
-      <h2>{name}</h2>
-      <h3>{cuisines.join(", ")}</h3>
-      <h4>{avgRating} stars</h4>
-    </div>
-  );
-};
-
-
-function filterData(searchText, restaurants) {
-  const lowerCaseSearchInput = searchText.toLowerCase();
-  const filterData = restaurants.filter((data) =>
-    data.name.toLowerCase().includes(lowerCaseSearchInput)
-  );
-  return filterData;
-}
 const Body = () => {
   const [searchInput, setSearchInput] = useState("");
-  const [restaurants, setRestaurants] = useState(restaurantList);
+  const [restaurants, setRestaurants] = useState([]);
+  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
 
-  async function getRestaurants(){
-    const data = await fetch("https://www.swiggy.com/mapi/homepage/getCards?lat=29.551837&lng=75.025889");
-    const json = await data.json();
-    setRestaurants(json.data.success.cards[1].gridWidget.gridElements.infoWithStyle.restaurants);
-  }
-
+  //To see the Shimmer Effect - Use Effect is necessary to use because we want to run this only on time when page relaods, search will not work properly if it renders everytime change in any state.
   useEffect(()=>{
-    getRestaurants();
+    setTimeout(() => {
+      setRestaurants(restaurantList);
+      setFilteredRestaurants(restaurantList);
+    }, 2000);
   }, [])
 
-  console.log("render");
+  // async function getRestaurants(){
+  //   const data = await fetch("https://www.swiggy.com/mapi/homepage/getCards?lat=29.5320731&lng=75.");
+  //   const json = await data.json();
+  //   setRestaurants(json.data.success.cards[1].gridWidget.gridElements.infoWithStyle.restaurants);
+  //   // try {
+  //   //   const response = await axios.request(options);
+  //   //   console.log(response.data);
+  //   // } catch (error) {
+  //   //   console.error(error);
+  //   // }
+  // }
 
-  return (
+  // useEffect(()=>{
+  //   getRestaurants();
+  // }, [])
+
+  //Conditional Rendering
+  return (restaurants.length === 0) ? (
+    <Shimmer />
+  ) : (
     <>
       <div className="search-container">
         <input
@@ -68,7 +54,7 @@ const Body = () => {
           onClick={() => {
             // setRestaurants(restaurantList);
             const data = filterData(searchInput, restaurants);
-            setRestaurants(data);
+            setFilteredRestaurants(data);
           }}
         >
           Search
@@ -77,8 +63,8 @@ const Body = () => {
       <div className="res-list">
         {/* {ResturantCard(restaurantList[0])} */}
 
-        {restaurants.map((item) => {
-          return <ResturantCard {...item.info} key={item.id} />;
+        {filteredRestaurants.map((item) => {
+          return <ResturantCard {...item.info} key={item.info.id} />;
         })}
 
         {/* <ResturantCard {...restaurantList[0]} />
@@ -86,8 +72,8 @@ const Body = () => {
         name={restaurantList[1].name}
         img={restaurantList[1].img}
         cuisineType={restaurantList[1].cuisineType}
-          rating={restaurantList[1].rating}
-          />
+        rating={restaurantList[1].rating}
+        />
         <ResturantCard {...restaurantList[2]} />
         <ResturantCard {...restaurantList[3]} />
         <ResturantCard {...restaurantList[4]} />
@@ -95,10 +81,18 @@ const Body = () => {
         <ResturantCard {...restaurantList[6]} />
         <ResturantCard {...restaurantList[7]} />
         <ResturantCard {...restaurantList[8]} />
-        <ResturantCard {...restaurantList[9]} /> */}
+      <ResturantCard {...restaurantList[9]} /> */}
       </div>
     </>
   );
 };
+
+function filterData(searchText, restaurants) {
+  const lowerCaseSearchInput = searchText.toLowerCase();
+  const filterData = restaurants.filter((data) =>
+    data.info.name.toLowerCase().includes(lowerCaseSearchInput)
+  );
+  return filterData;
+}
 
 export default Body;
