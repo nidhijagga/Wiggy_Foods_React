@@ -34,8 +34,12 @@ const NavBar = () => {
         <Link to="/about">
           <li>About Us</li>
         </Link>
-        <li>Contact Us</li>
-        <li>Cart</li>
+        <Link to="/contact">
+          <li>Contact Us</li>
+        </Link>
+        <Link to="/cart">
+          <li>Cart</li>
+        </Link>
       </ul>
 
       {IsLoggedIn ? (
