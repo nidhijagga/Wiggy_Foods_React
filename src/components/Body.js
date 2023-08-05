@@ -2,6 +2,8 @@ import { restaurantList } from "../config";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import ResturantCard from "./RestaurantCard";
+import EmptyData from "./EmptyData";
+
 
 const Body = () => {
   const [searchInput, setSearchInput] = useState("");
@@ -9,12 +11,12 @@ const Body = () => {
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
 
   //To see the Shimmer Effect - Use Effect is necessary to use because we want to run this only on time when page relaods, search will not work properly if it renders everytime change in any state.
-  useEffect(()=>{
+  useEffect(() => {
     setTimeout(() => {
       setRestaurants(restaurantList);
       setFilteredRestaurants(restaurantList);
     }, 2000);
-  }, [])
+  }, []);
 
   // async function getRestaurants(){
   //   const data = await fetch("https://www.swiggy.com/mapi/homepage/getCards?lat=29.5320731&lng=75.");
@@ -33,7 +35,7 @@ const Body = () => {
   // }, [])
 
   //Conditional Rendering
-  return (restaurants.length === 0) ? (
+  return restaurants.length === 0 ? (
     <Shimmer />
   ) : (
     <>
@@ -63,9 +65,13 @@ const Body = () => {
       <div className="res-list">
         {/* {ResturantCard(restaurantList[0])} */}
 
-        {filteredRestaurants.map((item) => {
-          return <ResturantCard {...item.info} key={item.info.id} />;
-        })}
+        {filteredRestaurants.length === 0 ? (
+          <EmptyData />
+        ) : (
+          filteredRestaurants.map((item) => {
+            return <ResturantCard {...item.info} key={item.info.id} />;
+          })
+        )}
 
         {/* <ResturantCard {...restaurantList[0]} />
         <ResturantCard
