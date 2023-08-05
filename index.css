@@ -2,7 +2,8 @@
     display: flex;
     justify-content: space-between;
     margin: 10px;
-    border: 1px solid black;
+    /* border: 1px solid black; */
+    /* background-color: grey; */
 }
 .title {
     display: flex;
@@ -11,27 +12,49 @@
 .logo {
     width: 100px;
 }
-.nav-items > ul{
-    display: flex;
-    list-style-type: none;
+.nav-items {
+  display: flex;
+  align-items: center; /* Vertically center the elements */
 }
-.nav-items > ul > li{
-    padding: 20px;
+
+.nav-items ul {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
+
+.nav-items ul li {
+  padding: 20px;
+}
+
+.nav-items button {
+  padding: 5px 10px;
+  margin-left: auto; /* Push the button to the right-most side of the container */
+}
+
+.res-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Horizontally center the card */
+  align-items: center; /* Vertically center the card */
+  /* height: 100vh;  */
+}
+
 .card {
     width: 280px;
     height: 350px;
     border : 1px solid black;
     padding: 10px;
-    margin: 10px
+    margin: 10px;
 }
 .card > img {
     width: 100%;
     height: 50%;
 }
-.res-list{
-    display: flex; 
-    flex-wrap: wrap;
+
+.search-container {
+  padding: 10px;
 }
 /* Add appropriate styling for shimmer effect */
 @keyframes shimmerAnimation {
@@ -49,7 +72,9 @@
   
   .shimmer-wrapper {
     display: flex;
-    flex-wrap: wrap; /* This property ensures that shimmer cards wrap to the next line if there's not enough space horizontally */
+    flex-wrap: wrap; 
+    justify-content: center; 
+    align-items: center;
   }
   
   .shimmer-card {

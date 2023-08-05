@@ -10,12 +10,9 @@
 //   );
 // };
 
-
-
-
 const ResturantCard = ({ name, cuisines, avgRating, cloudinaryImageId }) => {
-    // const {img, name, cuisineType, rating} = restaurant;
-    return (
+  // const {img, name, cuisineType, rating} = restaurant;
+  return (
       <div className="card">
         <img
           src={
@@ -28,8 +25,7 @@ const ResturantCard = ({ name, cuisines, avgRating, cloudinaryImageId }) => {
         <h3>{cuisines.join(", ")}</h3>
         <h4>{avgRating} stars</h4>
       </div>
-    );
-  };
-  
+  );
+};
 
-  export default ResturantCard;
+export default ResturantCard;
