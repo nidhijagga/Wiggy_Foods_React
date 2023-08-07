@@ -15,7 +15,7 @@ const Body = () => {
     setTimeout(() => {
       setRestaurants(restaurantList);
       setFilteredRestaurants(restaurantList);
-    }, 2000);
+    }, 500);
   }, []);
 
   // async function getRestaurants(){
