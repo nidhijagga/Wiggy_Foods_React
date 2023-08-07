@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 //   );
 // };
 
+
 const ResturantCard = ({
   id,
   name,

@@ -1,38 +1,63 @@
-import { restaurantList } from "../config";
+// import { restaurantList } from "../config";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import ResturantCard from "./RestaurantCard";
 import EmptyData from "./EmptyData";
-
-
+import { swiggy_restaurant_api } from "../config";
 const Body = () => {
   const [searchInput, setSearchInput] = useState("");
   const [restaurants, setRestaurants] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
 
   //To see the Shimmer Effect - Use Effect is necessary to use because we want to run this only on time when page relaods, search will not work properly if it renders everytime change in any state.
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setRestaurants(restaurantList);
+  //     setFilteredRestaurants(restaurantList);
+  //   }, 500);
+  // }, []);
+
+  // async function getRestaurant to fetch API data
+  async function getRestaurants() {
+    // handle the error using try... catch
+    try {
+      const response = await fetch(swiggy_restaurant_api);
+      // if response is not ok then throw new Error
+      if (!response.ok) {
+        const err = response.status;
+        throw new Error(err);
+      } else {
+        const json = await response.json();
+
+        // initialize checkJsonData() function to check Swiggy Restaurant data
+        async function checkJsonData(jsonData) {
+          for (let i = 0; i < jsonData?.data?.cards.length; i++) {
+            // initialize checkData for Swiggy Restaurant data
+            let checkData =
+              json?.data?.cards[i]?.card?.card?.gridElements?.infoWithStyle
+                ?.restaurants;
+
+            // if checkData is not undefined then return it
+            if (checkData !== undefined) {
+              return checkData;
+            }
+          }
+        }
+
+        // call the checkJsonData() function which return Swiggy Restaurant data
+        const resData = await checkJsonData(json);
+
+        setRestaurants(resData);
+        setFilteredRestaurants(resData);
+      }
+    } catch (error) {
+      console.error(error); // show error in console
+    }
+  }
+
   useEffect(() => {
-    setTimeout(() => {
-      setRestaurants(restaurantList);
-      setFilteredRestaurants(restaurantList);
-    }, 500);
+    getRestaurants();
   }, []);
-
-  // async function getRestaurants(){
-  //   const data = await fetch("https://www.swiggy.com/mapi/homepage/getCards?lat=29.5320731&lng=75.");
-  //   const json = await data.json();
-  //   setRestaurants(json.data.success.cards[1].gridWidget.gridElements.infoWithStyle.restaurants);
-  //   // try {
-  //   //   const response = await axios.request(options);
-  //   //   console.log(response.data);
-  //   // } catch (error) {
-  //   //   console.error(error);
-  //   // }
-  // }
-
-  // useEffect(()=>{
-  //   getRestaurants();
-  // }, [])
 
   //Conditional Rendering
   return restaurants.length === 0 ? (
