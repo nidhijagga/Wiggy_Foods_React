@@ -56,6 +56,77 @@
 .search-container {
   padding: 10px;
 }
+
+
+
+.content-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.left-content {
+  width: 40%;
+  padding: 20px;
+  box-sizing: border-box;
+  font-size: 20px; /* Increase the font size by 20px */
+}
+
+.right-content {
+  width: 60%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.menu {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+}
+
+.menu li {
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  box-sizing: border-box;
+  font-size: 24px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.item-name {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.item-price {
+  font-weight: bold;
+}
+
+.order-button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 5px 15px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.order-button:hover {
+  background-color: #45a049;
+}
+
+/* Optional: Add hover effect to menu items */
+.menu li:hover {
+  background-color: #f0f0f0;
+  transition: background-color 0.3s ease;
+}
+
 /* Add appropriate styling for shimmer effect */
 @keyframes shimmerAnimation {
     0%, 100% {
