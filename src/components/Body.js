@@ -4,6 +4,7 @@ import Shimmer from "./Shimmer";
 import ResturantCard from "./RestaurantCard";
 import EmptyData from "./EmptyData";
 import { swiggy_restaurant_api } from "../config";
+import { filterData } from "../utils/helper";
 const Body = () => {
   const [searchInput, setSearchInput] = useState("");
   const [restaurants, setRestaurants] = useState([]);
@@ -118,12 +119,6 @@ const Body = () => {
   );
 };
 
-function filterData(searchText, restaurants) {
-  const lowerCaseSearchInput = searchText.toLowerCase();
-  const filterData = restaurants.filter((data) =>
-    data.info.name.toLowerCase().includes(lowerCaseSearchInput)
-  );
-  return filterData;
-}
+
 
 export default Body;
