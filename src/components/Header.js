@@ -42,6 +42,9 @@ const NavBar = () => {
         <Link to="/cart">
           <li>Cart</li>
         </Link>
+        <Link to="/instamart">
+          <li>Instamart</li>
+        </Link>
       </ul>
 
       {IsLoggedIn ? (
@@ -54,7 +57,7 @@ const NavBar = () => {
         </button>
       ) : (
         <button
-          onClick={() => {
+          onClick={() => {  
             setIsLoggedIn(true);
           }}
         >
