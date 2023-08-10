@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import useOnline from "../hooks/useOnline";
 
 const authentication = () => {
   return true;
@@ -25,6 +26,7 @@ const Title = () => {
 
 const NavBar = () => {
   const [IsLoggedIn, setIsLoggedIn] = useState(false);
+  const isOnline = useOnline();
   return (
     <div className="nav-items">
       <ul>
@@ -59,6 +61,7 @@ const NavBar = () => {
           Login
         </button>
       )}
+      <h1>{isOnline? "🟢" : "🔴"}</h1>
     </div>
   );
 };

@@ -5,18 +5,19 @@ import ResturantCard from "./RestaurantCard";
 import EmptyData from "./EmptyData";
 import { swiggy_restaurant_api } from "../config";
 import { filterData } from "../utils/helper";
+import useOnline from "../hooks/useOnline";
 const Body = () => {
   const [searchInput, setSearchInput] = useState("");
   const [restaurants, setRestaurants] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
 
-  //To see the Shimmer Effect - Use Effect is necessary to use because we want to run this only on time when page relaods, search will not work properly if it renders everytime change in any state.
+  //To see the Shimmer Effect - Use Effect is necessary to use because we want to run this only on time when page relaods, search will not work properly if it renders everytime change in any state. (Will create a mess check out class 10)
   // useEffect(() => {
   //   setTimeout(() => {
   //     setRestaurants(restaurantList);
   //     setFilteredRestaurants(restaurantList);
   //   }, 500);
-  // }, []);
+  // }, []);    
 
   // async function getRestaurant to fetch API data
   async function getRestaurants() {
@@ -60,6 +61,11 @@ const Body = () => {
     getRestaurants();
   }, []);
 
+
+  const online = useOnline();
+  if(!online){
+    return <h1>OOPS! please check your internet connection</h1>
+  }
   //Conditional Rendering
   return restaurants.length === 0 ? (
     <Shimmer />
