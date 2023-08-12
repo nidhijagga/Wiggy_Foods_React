@@ -8,16 +8,16 @@ const authentication = () => {
 
 const Title = () => {
   return (
-    <div className="title">
+    <div className="flex items-center">
       <a href="/">
         <img
           src="https://s3-eu-west-1.amazonaws.com/tpd/logos/62305fb67598423e883cc643/0x0.png"
           alt="logo"
-          className="logo"
-        />
+          className="w-28 ml-9"
+        /> 
       </a>
 
-      <h1 id="titleId" key="titleKey">
+      <h1 id="titleId" key="titleKey" className="text-3xl font-bold mx-3">
         Foods
       </h1>
     </div>
@@ -28,27 +28,27 @@ const NavBar = () => {
   const [IsLoggedIn, setIsLoggedIn] = useState(false);
   const isOnline = useOnline();
   return (
-    <div className="nav-items">
-      <ul>
+    <div className="flex items-center">
+      <ul className="flex">
         <Link to="/">
-          <li>Home</li>
+          <li className="p-5">Home</li>
         </Link>
-        <Link to="/about">
-          <li>About Us</li>
+        <Link to="/about" >
+          <li className="p-5">About Us</li>
         </Link>
         <Link to="/contact">
-          <li>Contact Us</li>
+          <li className="p-5">Contact Us</li>
         </Link>
         <Link to="/cart">
-          <li>Cart</li>
+          <li className="p-5">Cart</li>
         </Link>
         <Link to="/instamart">
-          <li>Instamart</li>
+          <li className="p-5">Instamart</li>
         </Link>
       </ul>
 
       {IsLoggedIn ? (
-        <button
+        <button className="bg-purple-300 px-3 py-1 rounded-lg"
           onClick={() => {
             setIsLoggedIn(false);
           }}
@@ -56,7 +56,7 @@ const NavBar = () => {
           Logout
         </button>
       ) : (
-        <button
+        <button className="bg-purple-300 px-3 py-1 rounded-lg"
           onClick={() => {  
             setIsLoggedIn(true);
           }}
@@ -71,7 +71,7 @@ const NavBar = () => {
 
 const Header = () => {
   return (
-    <div className="header">
+    <div className="flex justify-between m-3 bg-purple-100 rounded-2xl">
       <Title />
       <NavBar />
     </div>

@@ -1,9 +1,13 @@
-.header {
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+/* .header {
     display: flex;
     justify-content: space-between;
     margin: 10px;
-    /* border: 1px solid black; */
-    /* background-color: grey; */
 }
 .title {
     display: flex;
@@ -14,7 +18,7 @@
 }
 .nav-items {
   display: flex;
-  align-items: center; /* Vertically center the elements */
+  align-items: center;
 }
 
 .nav-items ul {
@@ -30,15 +34,14 @@
 
 .nav-items button {
   padding: 5px 10px;
-  margin-left: auto; /* Push the button to the right-most side of the container */
+  margin-left: auto; 
 }
 
 .res-list {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center; /* Horizontally center the card */
-  align-items: center; /* Vertically center the card */
-  /* height: 100vh;  */
+  justify-content: center; 
+  align-items: center; 
 }
 
 .card {
@@ -68,7 +71,7 @@
   width: 40%;
   padding: 20px;
   box-sizing: border-box;
-  font-size: 20px; /* Increase the font size by 20px */
+  font-size: 20px; 
 }
 
 .right-content {
@@ -121,13 +124,13 @@
   background-color: #45a049;
 }
 
-/* Optional: Add hover effect to menu items */
+
 .menu li:hover {
   background-color: #f0f0f0;
   transition: background-color 0.3s ease;
 }
 
-/* Add appropriate styling for shimmer effect */
+
 @keyframes shimmerAnimation {
     0%, 100% {
       opacity: 0.3; 
@@ -149,7 +152,7 @@
   }
   
   .shimmer-card {
-    /* Your existing styles for shimmer cards */
+
     width: 280px;
     height: 350px;
     border: 1px solid #ddd;
@@ -187,4 +190,4 @@
     height: 12px;
     background-color: #ddd;
   }
-  
+   */

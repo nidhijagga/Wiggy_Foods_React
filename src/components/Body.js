@@ -71,20 +71,19 @@ const Body = () => {
     <Shimmer />
   ) : (
     <>
-      <div className="search-container">
+      <div className="border-2 rounded-lg mx-5 my-2 w-fit py-1">
         <input
           type="text"
-          className="search-input"
+          className="p-1 mx-1"
           placeholder="Search"
           value={searchInput}
           onChange={(e) => {
             setSearchInput(e.target.value);
-            // console.log(e.target.value);
           }}
         />
         <button
           type="submit"
-          className="search-btn"
+          className="m-1 px-2"
           onClick={() => {
             // setRestaurants(restaurantList);
             const data = filterData(searchInput, restaurants);
@@ -94,7 +93,7 @@ const Body = () => {
           Search
         </button>
       </div>
-      <div className="res-list">
+      <div className="flex flex-wrap justify-center items-center">
         {/* {ResturantCard(restaurantList[0])} */}
 
         {filteredRestaurants.length === 0 ? (

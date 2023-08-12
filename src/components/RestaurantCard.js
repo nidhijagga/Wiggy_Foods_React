@@ -21,13 +21,14 @@ const ResturantCard = ({
 }) => {
   // const {img, name, cuisineType, rating} = restaurant;
   return (
-    <div className="card">
+    <div className="w-72 h-96 m-2 p-2 border-2 border-black">
       <img
         src={
           "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" +
           cloudinaryImageId
         }
         alt=""
+        className="w-full h-2/3"
       />
       <Link to={`/res/${id}`}>
         <h2>{name}</h2>
