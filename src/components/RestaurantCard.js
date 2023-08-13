@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import UserContext from "../utils/UserContext";
 // const ResturantCard = ({restaurant}) => {
 //   const {img, name, cuisineType, rating} = restaurant;
 //   return (
@@ -19,6 +21,7 @@ const ResturantCard = ({
   avgRating,
   cloudinaryImageId,
 }) => {
+  const {user} = useContext(UserContext);
   // const {img, name, cuisineType, rating} = restaurant;
   return (
     <div className="w-72 h-96 m-2 p-2 border-2 border-black">
@@ -35,6 +38,7 @@ const ResturantCard = ({
       </Link>
       <h3>{cuisines.join(", ")}</h3>
       <h4>{avgRating} stars</h4>
+      <h1 className="font-bold">{user.name} - {user.email}</h1>
     </div>
   );
 };

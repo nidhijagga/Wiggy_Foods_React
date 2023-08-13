@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import useOnline from "../hooks/useOnline";
+import UserContext from "../utils/UserContext";  
 
 const authentication = () => {
   return true;
@@ -27,6 +28,7 @@ const Title = () => {
 const NavBar = () => {
   const [IsLoggedIn, setIsLoggedIn] = useState(false);
   const isOnline = useOnline();
+  const {user} = useContext(UserContext);
   return (
     <div className="flex items-center">
       <ul className="flex">
@@ -64,6 +66,7 @@ const NavBar = () => {
           Login
         </button>
       )}
+      <h1 className="font-bold px-2">{user.name}</h1>
       <h1>{isOnline? "🟢" : "🔴"}</h1>
     </div>
   );
