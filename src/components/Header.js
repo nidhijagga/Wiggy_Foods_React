@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import useOnline from "../hooks/useOnline";
 import UserContext from "../utils/UserContext";  
-
+import { useSelector } from "react-redux/es/hooks/useSelector";
 const authentication = () => {
   return true;
 };
@@ -29,6 +29,7 @@ const NavBar = () => {
   const [IsLoggedIn, setIsLoggedIn] = useState(false);
   const isOnline = useOnline();
   const {userState} = useContext(UserContext);
+  const cartItems = useSelector(store => store.cart.items);
   return (
     <div className="flex items-center">
       <ul className="flex">
@@ -42,7 +43,7 @@ const NavBar = () => {
           <li className="p-5">Contact Us</li>
         </Link>
         <Link to="/cart">
-          <li className="p-5">Cart</li>
+          <li className="p-5">Cart - {cartItems.length} items</li>
         </Link>
         <Link to="/instamart">
           <li className="p-5">Instamart</li>
