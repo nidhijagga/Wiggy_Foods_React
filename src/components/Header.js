@@ -28,7 +28,7 @@ const Title = () => {
 const NavBar = () => {
   const [IsLoggedIn, setIsLoggedIn] = useState(false);
   const isOnline = useOnline();
-  const {user} = useContext(UserContext);
+  const {userState} = useContext(UserContext);
   return (
     <div className="flex items-center">
       <ul className="flex">
@@ -66,7 +66,8 @@ const NavBar = () => {
           Login
         </button>
       )}
-      <h1 className="font-bold px-2">{user.name}</h1>
+      
+      <h1 className="font-bold p-2">{userState.name} - {userState.email}</h1>    
       <h1>{isOnline? "🟢" : "🔴"}</h1>
     </div>
   );

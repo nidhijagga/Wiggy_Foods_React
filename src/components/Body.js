@@ -1,16 +1,18 @@
 // import { restaurantList } from "../config";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Shimmer from "./Shimmer";
 import ResturantCard from "./RestaurantCard";
 import EmptyData from "./EmptyData";
 import { swiggy_restaurant_api } from "../config";
 import { filterData } from "../utils/helper";
 import useOnline from "../hooks/useOnline";
+import UserContext from "../utils/UserContext";
+
 const Body = () => {
   const [searchInput, setSearchInput] = useState("");
   const [restaurants, setRestaurants] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
-
+  const {userState, setUserState} = useContext(UserContext);
   //To see the Shimmer Effect - Use Effect is necessary to use because we want to run this only on time when page relaods, search will not work properly if it renders everytime change in any state. (Will create a mess check out class 10)
   // useEffect(() => {
   //   setTimeout(() => {
@@ -92,6 +94,28 @@ const Body = () => {
         >
           Search
         </button>
+        <input
+          type="text"
+          className="p-1 mx-1"
+          placeholder="Enter your Name"
+          onChange={(e) => {
+            setUserState((previousUser)=>({
+              ...previousUser,
+              name : e.target.value
+            }))
+          }}
+        />
+         <input
+          type="text"
+          className="p-1 mx-1"
+          placeholder="Enter your Email"
+          onChange={(e) => {
+            setUserState((previousUser)=>({
+              ...previousUser,
+              email: e.target.value + "@gmail.com"
+            }))
+          }}
+        />
       </div>
       <div className="flex flex-wrap justify-center items-center">
         {/* {ResturantCard(restaurantList[0])} */}
