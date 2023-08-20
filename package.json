@@ -12,6 +12,7 @@
   "devDependencies": {
     "@babel/core": "^7.22.10",
     "@babel/preset-env": "^7.22.10",
+    "@babel/preset-react": "^7.22.5",
     "@testing-library/react": "^14.0.0",
     "babel-jest": "^29.6.2",
     "babel-plugin-transform-remove-console": "^6.9.4",
@@ -21,7 +22,8 @@
     "parcel": "^2.9.3",
     "postcss": "^8.4.27",
     "process": "^0.11.10",
-    "tailwindcss": "^3.3.3"
+    "tailwindcss": "^3.3.3",
+    "ts-jest": "^29.1.1"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
